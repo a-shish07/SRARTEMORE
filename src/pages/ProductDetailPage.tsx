@@ -1006,7 +1006,7 @@ export default function ProductDetailPage({
   }
 
   .luxury-subtitle {
-    font-size: 10px;
+    font-size: 14px;
     margin-bottom: 4px;
   }
 
@@ -1029,12 +1029,12 @@ export default function ProductDetailPage({
   }
 
   .luxury-item-title {
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 2px;
   }
 
   .luxury-item-text {
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.3;
   }
 }
@@ -1130,7 +1130,7 @@ export default function ProductDetailPage({
   }
 
   .breadcrumb-bar .breadcrumb {
-    font-size: 10px;
+    font-size: 14px;
     margin: 0;
   }
 
@@ -1195,7 +1195,7 @@ export default function ProductDetailPage({
   /* DESCRIPTION */
 
   .mobile-description {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.7;
     color: #666;
     margin-bottom: 24px;
@@ -1215,7 +1215,7 @@ export default function ProductDetailPage({
     border-radius: 12px;
     border: 1px solid #ddd;
     background: white;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .mobile-size-btn.active {
@@ -1232,7 +1232,7 @@ export default function ProductDetailPage({
     border-radius: 18px;
     background: #d4b06a;
     color: black;
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: 2px;
     text-transform: uppercase;
     border: none;
@@ -1313,20 +1313,20 @@ export default function ProductDetailPage({
           .m-info > div:first-of-type { justify-content: flex-start; }
 
           .m-title {
-            font-size: 11px !important;
+            font-size: 15px !important;
             line-height: 1.2;
             margin: 0;
             text-align: left;
           }
           .m-price {
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--text);
             margin: 2px 0;
             text-align: left;
           }
           .m-price .old {
-            font-size: 10px;
+            font-size: 14px;
             color: var(--text-muted);
             text-decoration: line-through;
             margin-left: 6px;
@@ -1337,7 +1337,7 @@ export default function ProductDetailPage({
              Micro-copy in col 1 — compact, polished
           ──────────────────────────────────────── */
           .m-col1-desc {
-            font-size: 9px !important;
+            font-size: 13px !important;
             line-height: 1.5 !important;
             color: var(--text-muted) !important;
             margin: 4px 0 0 !important;
@@ -1347,7 +1347,7 @@ export default function ProductDetailPage({
 
           /* product-body-text inside accordion also tighter */
           .accordion-body .product-body-text {
-            font-size: 9.5px !important;
+            font-size: 14px !important;
             line-height: 1.5 !important;
             margin: 0;
           }
@@ -1383,7 +1383,7 @@ export default function ProductDetailPage({
           }
           .m-feat-icon {
             color: var(--gold, #c9a84c);
-            font-size: 13px;
+            font-size: 14px;
             flex-shrink: 0;
             width: 16px;
             display: flex;
@@ -1391,13 +1391,13 @@ export default function ProductDetailPage({
             justify-content: center;
           }
           .m-feat-title {
-            font-size: 10px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--text);
             line-height: 1.2;
           }
           .m-feat-sub {
-            font-size: 9px;
+            font-size: 12px;
             color: var(--text-muted);
             line-height: 1.2;
           }
@@ -1414,7 +1414,7 @@ export default function ProductDetailPage({
           }
           .mobile-full-btn {
             width: 100% !important;
-            font-size: 11px !important;
+            font-size: 13px !important;
             padding: 11px 8px !important;  /* ≥ 44px touch target */
             white-space: nowrap;
             min-height: 40px;
@@ -1424,18 +1424,18 @@ export default function ProductDetailPage({
           .m-info .size-options { justify-content: flex-start; }
           .m-info .option-label { text-align: left; }
           .m-info .size-btn {
-            font-size: 10px !important;
+            font-size: 13px !important;
             padding: 5px 9px !important;
             min-width: 32px !important;
             min-height: 32px !important;
           }
           .m-info .detail-label {
-            font-size: 9px;
+            font-size: 14px;
             margin-bottom: 3px;
             text-align: left;
           }
           .m-info .option-label {
-            font-size: 10px;
+            font-size: 14px;
             margin-top: 4px;
             margin-bottom: 2px;
             text-align: left;
@@ -1455,7 +1455,7 @@ export default function ProductDetailPage({
             border-bottom: 1px solid var(--border, #eee);
           }
           .m-section-label {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 700;
             letter-spacing: 1.5px;
             color: var(--gold, #c9a84c);
@@ -1478,7 +1478,7 @@ export default function ProductDetailPage({
             min-width: calc(50% - 5px);
           }
           .m-similar-section .view-all-btn {
-            font-size: 11px;
+            font-size: 14px;
             padding: 10px 16px;
             margin-top: 12px;
             letter-spacing: 1px;
@@ -1501,7 +1501,7 @@ export default function ProductDetailPage({
             background: none;
             border: none;
             padding: 10px 10px;
-            font-size: 9.5px;
+            font-size: 12px;
             font-weight: 600;
             letter-spacing: 0.8px;
             color: var(--text);
@@ -1517,26 +1517,26 @@ export default function ProductDetailPage({
           }
           .accordion-body {
             padding: 2px 10px 12px;
-            font-size: 9.5px;
+            font-size: 12px;
             color: var(--text);
             line-height: 1.5;
           }
           .accordion-body .review-body {
             padding-left: 0 !important;
-            font-size: 9.5px !important;
+            font-size: 12px !important;
             line-height: 1.5 !important;
           }
-          .accordion-body .reviewer-name { font-size: 10.5px; }
+          .accordion-body .reviewer-name { font-size: 12.5px; }
           .accordion-body .review-card { padding-bottom: 10px; }
           .accordion-body .reviewer-avatar {
             width: 30px;
             height: 30px;
-            font-size: 11px;
+            font-size: 13px;
           }
           .accordion-body .rating-score { font-size: 22px; }
           .accordion-body .rating-summary { padding: 9px 11px; gap: 7px; }
           .accordion-body .view-all-btn {
-            font-size: 9px;
+            font-size: 12px;
             padding: 7px 14px;
           }
 
@@ -1545,8 +1545,8 @@ export default function ProductDetailPage({
             padding: 10px 10px 18px;
             border-top: 1px solid var(--border, #eee);
           }
-          .m-help-block .feature-title { font-size: 10px; margin-bottom: 2px; }
-          .m-help-block .feature-sub   { font-size: 9px; }
+          .m-help-block .feature-title { font-size: 12px; margin-bottom: 2px; }
+          .m-help-block .feature-sub   { font-size: 12px; }
         }
 
         

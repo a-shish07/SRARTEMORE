@@ -300,17 +300,20 @@ function SidebarContent({
       </div>
 
       <h3 className="filter-title" style={{ marginTop: "32px" }}>Price Range</h3>
-      <input
-        type="range" min={0} max={1000} step={5}
-        value={priceRange}
-        onChange={e => setPriceRange(Number(e.target.value))}
-        className="price-range-slider"
-      />
+     <div className="price-range-wrapper">
+  <input
+    type="range"
+    min={0}
+    max={1000}
+    step={5}
+    value={priceRange}
+    onChange={(e) => setPriceRange(Number(e.target.value))}
+    className="price-range-slider"
+  />
+</div>
       <p className="price-display">Up to £{priceRange}</p>
 
-      <h3 style={{ fontSize: "11px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--text)", marginBottom: "12px", marginTop: "32px", fontWeight: 500 }}>
-        Size
-      </h3>
+      <h3 className="filter-title" style={{ marginTop: "32px" }}>SIZE</h3>
       {SIZES.map(sz => (
         <div key={sz} className="filter-item" onClick={() => toggleSize(sz)} style={{ cursor: "pointer" }}>
           <label style={{
