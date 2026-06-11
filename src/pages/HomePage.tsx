@@ -46,6 +46,11 @@ export default function HomePage({ onNavigate }: HomePageProps) {
     <div>
       {/* ================= HERO ================= */}
       <section className="hero">
+        
+        <div className="hero-image">
+          <img src="/hero.png" alt="SR Artemore Luxury Nails" />
+          <div className="hero-image-overlay"></div>
+        </div>
         <div className="hero-content">
           <p className="hero-eyebrow">✦ Handcrafted Luxury</p>
           <h1 className="hero-title">
@@ -78,10 +83,6 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               <div className="lbl">Designs</div>
             </div>
           </div>
-        </div>
-        <div className="hero-image">
-          <div className="hero-image-overlay"></div>
-          <img src="/hero-nail.png" alt="SR Artemore Luxury Nails" />
         </div>
       </section>
 
