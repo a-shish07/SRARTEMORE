@@ -215,7 +215,7 @@ export default function WholesaleInquiry() {
           </div>
         </div>
         <div className="sa-hero-img"  role="img" aria-label="Henna stencil product set" >
-          <img src="\public\heroo.png" alt="Henna stencil product set" />
+          <img src="/heroo.png" alt="Henna stencil product set" />
         </div>
       </section>
 
