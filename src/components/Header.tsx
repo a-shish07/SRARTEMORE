@@ -22,7 +22,8 @@ type Page =
   | "press"
   | "new-arrivals"
   | "on-sale"
-  | "best-sellers";
+  | "best-sellers"
+  |"wholesale";
 
 interface HeaderProps {
   currentPage: Page;
@@ -85,6 +86,10 @@ export default function Header({
       key: "contact",
       label: "Contact",
     },
+    {
+      key:"wholesale",
+      label:"Wholesale Inquiry"
+    }
   ] as const;
 
   const handleNav = (page: Page) => {

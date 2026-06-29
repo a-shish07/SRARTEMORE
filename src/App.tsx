@@ -23,6 +23,7 @@ import SizeGuide from "./pages/SizeGuide";
 import HowToApply from "./pages/HowToApply";
 import FAQ from "./pages/FAQ";
 import Press from "./pages/Press";
+import WholesaleInquiry from "./pages/Wholesale";
 import "./index.css";
 
 import PolicyPage from "./pages/PolicyPage";
@@ -30,7 +31,7 @@ import PolicyPage from "./pages/PolicyPage";
 type Page =
   | "home" | "products" | "detail" | "cart" | "checkout" | "success" | "about" | "contact" | "favorites"
   | "login" | "dashboard" | "size-guide" | "how-to-apply" | "faq" | "press" | "new-arrivals" | "on-sale" | "best-sellers"
-  | "blog" | "careers" | "returns" | "shipping" | "privacy" | "terms";
+  | "blog" | "careers" | "returns" | "shipping" | "privacy" | "terms" | "wholesale";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -74,6 +75,7 @@ function AppInner() {
     if (path === "/shipping") return "shipping";
     if (path === "/privacy") return "privacy";
     if (path === "/terms") return "terms";
+    if (path === "/wholesale") return "wholesale";
     return "home";
   };
 
@@ -107,6 +109,7 @@ function AppInner() {
         case "shipping": navigateHook("/shipping"); break;
         case "privacy": navigateHook("/privacy"); break;
         case "terms": navigateHook("/terms"); break;
+        case "wholesale": navigateHook("/wholesale"); break;
         default: navigateHook("/");
       }
     }
@@ -144,7 +147,7 @@ function AppInner() {
           <Route path="/how-to-apply" element={<HowToApply />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/press" element={<Press />} />
-          
+          <Route path="/wholesale" element={<WholesaleInquiry  />} />
           {/* Policy & Info Pages */}
           <Route path="/blog" element={
             <PolicyPage 
