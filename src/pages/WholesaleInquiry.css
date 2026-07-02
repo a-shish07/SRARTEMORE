@@ -664,3 +664,248 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ===========================================================
+   MOBILE RESPONSIVE ONLY
+   Desktop design remains untouched
+=========================================================== */
+
+@media (max-width: 768px) {
+
+  /* Overall */
+  .sa{
+    overflow-x:hidden;
+  }
+
+  /* ---------------- HERO ---------------- */
+
+  .sa-hero{
+    display:flex;
+    flex-direction:column-reverse;
+    padding:40px 20px;
+    min-height:auto;
+    text-align:center;
+    gap:30px;
+  }
+
+  .sa-hero-content{
+    width:100%;
+    max-width:100%;
+    padding:0;
+    align-items:center;
+  }
+
+  .sa-hero-title{
+    font-size:42px;
+    line-height:1.1;
+  }
+
+  .sa-hero-eyebrow{
+    font-size:14px;
+    letter-spacing:4px;
+  }
+
+  .sa-divider{
+    margin:20px auto;
+  }
+
+  .sa-hero-text{
+    font-size:15px;
+    line-height:1.8;
+    max-width:100%;
+  }
+
+  .sa-hero-img{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .sa-hero-img img{
+    width:100%;
+    max-width:330px;
+    height:auto;
+  }
+
+  .sa-hero-features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:30px;
+  }
+
+  .sa-hero-feature{
+    flex-direction:column;
+    text-align:center;
+    gap:10px;
+  }
+
+  .sa-hero-feature-label{
+    font-size:11px;
+  }
+
+  /* ---------------- BODY ---------------- */
+
+  .sa-body{
+    display:flex;
+    flex-direction:column;
+    gap:50px;
+    padding:50px 20px;
+  }
+
+  .sa-col-left,
+  .sa-col-right{
+    width:100%;
+  }
+
+  .sa-h2{
+    text-align:center;
+    font-size:30px;
+  }
+
+  /* Benefits */
+
+  .sa-benefit{
+    display:flex;
+    align-items:flex-start;
+    gap:15px;
+  }
+
+  .sa-benefit-ring{
+    flex-shrink:0;
+  }
+
+  .sa-benefit-title{
+    font-size:18px;
+  }
+
+  .sa-benefit-text{
+    font-size:14px;
+    line-height:1.7;
+  }
+
+  /* Gallery */
+
+  .sa-gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+  }
+
+  .sa-card-img{
+    width:100%;
+    height:auto;
+  }
+
+  .sa-card-cap{
+    font-size:14px;
+  }
+
+  .sa-card-sub{
+    font-size:12px;
+  }
+
+  .sa-ghost-btn{
+    width:100%;
+    justify-content:center;
+    margin-top:25px;
+  }
+
+  /* ---------------- FORM ---------------- */
+
+  .sa-form{
+    padding:28px 20px;
+  }
+
+  .sa-form-title{
+    font-size:28px;
+    text-align:center;
+  }
+
+  .sa-form-sub{
+    text-align:center;
+    font-size:14px;
+  }
+
+  .sa-row{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+
+  .sa-field{
+    width:100%;
+  }
+
+  .sa-input{
+    width:100%;
+    font-size:15px;
+  }
+
+  .sa-textarea{
+    min-height:140px;
+  }
+
+  .sa-qty{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:stretch;
+  }
+
+  .sa-qty-tag{
+    width:100%;
+    text-align:center;
+  }
+
+  .sa-qty-input{
+    width:100%;
+  }
+
+  .sa-submit{
+    width:100%;
+    justify-content:center;
+  }
+
+  .sa-secure{
+    text-align:center;
+    font-size:13px;
+  }
+
+  /* ---------------- CTA ---------------- */
+
+  .sa-cta{
+    display:flex;
+    flex-direction:column;
+    padding:0;
+  }
+
+  .sa-cta-img{
+    width:100%;
+    min-height:260px;
+    background-position:center;
+    background-size:cover;
+  }
+
+  .sa-cta-content{
+    width:100%;
+    padding:40px 25px;
+    text-align:center;
+  }
+
+  .sa-cta-title{
+    font-size:30px;
+  }
+
+  .sa-cta-text{
+    font-size:15px;
+  }
+
+  .sa-ghost-light{
+    width:100%;
+    justify-content:center;
+  }
+
+}
