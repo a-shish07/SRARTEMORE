@@ -400,6 +400,33 @@ export default function Header({
           </ul>
 
           <div className="nav-icons">
+            {isAuthenticated ? (
+              <>
+      <button
+        className="icon-btn profile-btn-desktop"
+        onClick={() => handleNav("dashboard")}
+      >
+        Dashboard
+      </button>
+
+      <button
+        className="icon-btn profile-btn-desktop"
+        onClick={() => {
+          logout();
+          handleNav("home");
+        }}
+      >
+        Logout
+      </button>
+    </>
+  ) : (
+    <button
+      className="icon-btn profile-btn-desktop"
+      onClick={() => handleNav("login")}
+    >
+      Login
+    </button>
+  )}
             <button
               onClick={() =>
                 handleNav(

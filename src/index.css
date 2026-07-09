@@ -303,7 +303,7 @@ nav.scrolled .logo-svg {
   border: none;
   cursor: pointer;
   color: var(--text);
-  font-size: 20px;
+  /* font-size: 20px; */
   transition: all 0.3s ease;
   position: relative;
 }
@@ -315,6 +315,15 @@ nav.scrolled .logo-svg {
 
 .menu-toggle {
   display: none !important;
+}
+
+.profile-btn-desktop {
+  width: auto !important;
+  padding: 0 14px;
+  font-size: 13px;
+  font-family: "Jost";
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .profile-dropdown button:hover {
