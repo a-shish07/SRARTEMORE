@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { products } from "../data/products";
+import { useEffect, useState } from "react";
+// import { products } from "../data/products";
 import { useCart } from "../context/CartContext";
 import { useNotif } from "../components/Notification";
 import ProductCard from "../components/ProductCard";
 import { useFavorites } from "../context/FavoritesContext";
+const API_URL = import.meta.env.VITE_API_URL;
 
 type Page =
   | "home"
@@ -16,9 +17,13 @@ type Page =
   | "contact"
   | "favorites";
 
+// interface ProductDetailProps {
+//   productId: number;
+//   onNavigate: (page: Page, productId?: number) => void;
+// }
 interface ProductDetailProps {
-  productId: number;
-  onNavigate: (page: Page, productId?: number) => void;
+  productId: string;
+  onNavigate: (page: Page, productId?: any) => void;
 }
 
 // One-line summaries for mobile Col 1 — crisp, evocative, scannable
@@ -114,8 +119,31 @@ export default function ProductDetailPage({
   productId,
   onNavigate,
 }: ProductDetailProps) {
-  const product = products.find((p) => p.id === productId) || products[0];
+  // const product = products.find((p) => p.id === productId) || products[0];
 
+  const [product, setProduct] = useState<any>(null);
+
+  useEffect(() => {
+  fetchProduct();
+}, [productId]);
+if (!product) {
+  return <div>Loading...</div>;
+}
+const fetchProduct = async () => {
+  try {
+    const response = await fetch(
+      `${API_URL}/api/client/products/${productId}`
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+      setProduct(data.product);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
   const [activeImg, setActiveImg] = useState(0);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0] || "");
   const [qty, setQty] = useState(1);

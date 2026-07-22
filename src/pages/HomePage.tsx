@@ -26,16 +26,60 @@ function useReveal() {
 export default function HomePage({ onNavigate }: HomePageProps) {
   useReveal();
   const [testiIndex, setTestiIndex] = useState(0);
+const API_URL = import.meta.env.VITE_API_URL;
+const [banner, setBanner] = useState<any>(null);
+useEffect(() => {
+  fetchBanner();
+  fetchShapes();
+}, []);
 
+const fetchBanner = async () => {
+  try {
+
+    console.log("Calling API...");
+
+    const response = await fetch(`${API_URL}/api/banners`);
+
+    console.log("Status:", response.status);
+
+    const data = await response.json();
+
+    console.log("API Response:", data);
+
+    if (data.success && data.data.length > 0) {
+      setBanner(data.data[0]);
+      console.log("Banner State:", data.data[0]);
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const fetchShapes = async () => {
+  try {
+    const response = await fetch(`${API_URL}/api/client/shapes`);
+    const data = await response.json();
+
+    if (data.success) {
+      setShapes(data.shapes);
+    }
+    console.log("Shapes:", data.shapes);
+  } catch (error) {
+    console.error(error);
+  }
+};
   const nextTesti = () => setTestiIndex((prev) => (prev + 1) % testimonials.length);
   const prevTesti = () => setTestiIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
-  const shapes = [
-    { name: "Long Almond", count: "4 Products", image: "/shape-long-almond.png" },
-    { name: "Long Square", count: "4 Products", image: "/shape-long-square.png" },
-    { name: "Short Almond", count: "4 Products", image: "/shape-short-almond.png" },
-    { name: "Short Square", count: "4 Products", image: "/shape-short-square.png" },
-  ];
+  // const shapes = [
+  //   { name: "Long Almond", count: "4 Products", image: "/shape-long-almond.png" },
+  //   { name: "Long Square", count: "4 Products", image: "/shape-long-square.png" },
+  //   { name: "Short Almond", count: "4 Products", image: "/shape-short-almond.png" },
+  //   { name: "Short Square", count: "4 Products", image: "/shape-short-square.png" },
+  // ];
+const [shapes, setShapes] = useState<any[]>([]);
+
 
   const instaImages = [
     "/gold-nails.png", "/blue-nails.png", "/hero-nail.png",
@@ -45,7 +89,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div>
       {/* ================= HERO ================= */}
-      <section className="hero">
+      {/* <section className="hero">
         
         <div className="hero-image">
           <img src="/hero.png" alt="SR Artemore Luxury Nails" />
@@ -84,7 +128,87 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <section className="hero">
+
+  <div className="hero-image">
+
+    <img
+  src={
+    banner?.image_url
+      ? `${API_URL}${banner.image_url}`
+      : "/hero.png"
+  }
+  alt={banner?.title || "Hero Banner"}
+/>
+    <div className="hero-image-overlay"></div>
+
+  </div>
+
+  <div className="hero-content">
+
+    <p className="hero-eyebrow">
+
+      {banner?.subtitle || "✦ Handcrafted Luxury"}
+
+    </p>
+
+    <h1 className="hero-title">
+
+      {banner?.title || "Wear Art on Your Fingertips"}
+
+    </h1>
+
+    <p className="hero-sub">
+
+      {banner?.description}
+
+    </p>
+
+    <div className="hero-btns">
+
+      <button
+        className="btn-primary"
+        onClick={() => onNavigate("products")}
+      >
+        <span>
+
+          {banner?.button_text || "Explore Collection"}
+
+        </span>
+      </button>
+
+      <button
+        className="btn-outline"
+        onClick={() => onNavigate("about")}
+      >
+        Our Story
+      </button>
+
+    </div>
+
+    <div className="hero-stats">
+
+      <div className="hero-stat">
+        <div className="num">500+</div>
+        <div className="lbl">Happy Clients</div>
+      </div>
+
+      <div className="hero-stat">
+        <div className="num">100%</div>
+        <div className="lbl">Handmade</div>
+      </div>
+
+      <div className="hero-stat">
+        <div className="num">20+</div>
+        <div className="lbl">Designs</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
       {/* ================= MARQUEE ================= */}
       <div className="marquee-strip">
@@ -102,7 +226,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       </div>
 
       {/* ================= SHOP BY SHAPE ================= */}
-      <section className="section white">
+      {/* <section className="section white">
         <div className="section-header reveal">
           <p className="section-label">Browse By</p>
           <h2 className="section-title">Shop by Shape</h2>
@@ -118,16 +242,75 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 onNavigate("products");
               }}
             >
-              <img src={shape.image} alt={shape.name} loading="lazy" />
+             
+              <img
+              src={`${API_URL}${shape.image_url}`}
+              alt={shape.name}
+              loading="lazy"
+              style={{
+                width: "100%",
+                height: "260px",
+                objectFit: "cover",
+                display: "block",
+              }}
+              />
               <div className="cat-arrow">→</div>
               <div className="cat-info">
                 <div className="cat-name">{shape.name}</div>
-                <div className="cat-count">{shape.count}</div>
+                
+                <div className="cat-count">
+                  {shape.product_count} Products
+                </div>
               </div>
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
+      {/* ================= SHOP BY SHAPE ================= */}
+<section className="section white">
+  <div className="section-header reveal">
+    <p className="section-label">Browse By</p>
+    <h2 className="section-title">Shop by Shape</h2>
+    <p className="section-sub">
+      Find your perfect fit — every shape crafted to perfection
+    </p>
+  </div>
+
+  <div className="categories-grid">
+    {shapes.map((shape) => (
+      <div
+        key={shape.id}
+        className="cat-card"
+        onClick={() => {
+          localStorage.setItem("selectedShape", shape.name);
+          onNavigate("products");
+        }}
+      >
+        <img
+          src={`${API_URL}${shape.image_url}`}
+          alt={shape.name}
+          loading="lazy"
+          style={{
+            width: "100%",
+            height: "260px",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+
+        <div className="cat-arrow">→</div>
+
+        <div className="cat-info">
+          <div className="cat-name">{shape.name}</div>
+
+          <div className="cat-count">
+            View Collection
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* ================= FEATURED ================= */}
       <section className="section cream">

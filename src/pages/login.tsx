@@ -1,17 +1,86 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { loginUser, registerUser } from "../api/auth";
 
 export default function Login({ onNavigate }: { onNavigate: (page: string) => void }) {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
+  const [fullName, setFullName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    login();
-    onNavigate("dashboard");
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (loading) return;
+
+  setLoading(true);
+
+  try {
+    if (!isLogin) {
+      // Signup Validation
+      if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      const response = await registerUser(
+        fullName,
+        email,
+        password
+      );
+
+      if (response.data.success) {
+        alert(response.data.message);
+
+        setIsLogin(true);
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+      }
+
+      return;
+    }
+
+    // Login
+    const response = await loginUser(
+      email,
+      password
+    );
+
+    if (response.data.success) {
+      localStorage.setItem("token", response.data.token);
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(response.data.user)
+      );
+
+      login();
+
+      onNavigate("dashboard");
+    }
+
+  } catch (error: any) {
+
+    console.error("API Error:", error);
+
+    if (error.response) {
+      alert(error.response.data.message);
+    } else if (error.request) {
+      alert("Unable to connect to the server.");
+    } else {
+      alert(error.message);
+    }
+
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const testimonials = [
     {
@@ -125,7 +194,7 @@ export default function Login({ onNavigate }: { onNavigate: (page: string) => vo
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="auth-form-new">
+            {/* <form onSubmit={handleSubmit} className="auth-form-new">
               <div className="input-group-new">
                 <label>Your email</label>
                 <input 
@@ -175,7 +244,95 @@ export default function Login({ onNavigate }: { onNavigate: (page: string) => vo
                   {isLogin ? "Sign up" : "Log in"}
                 </button>
               </p>
-            </form>
+            </form> */}
+            <form onSubmit={handleSubmit} className="auth-form-new">
+
+  {!isLogin && (
+    <div className="input-group-new">
+      <label>Full Name</label>
+      <input
+        type="text"
+        placeholder="John Doe"
+        required
+        value={fullName}
+        onChange={(e) => setFullName(e.target.value)}
+      />
+    </div>
+  )}
+
+  <div className="input-group-new">
+    <label>Your Email</label>
+    <input
+      type="email"
+      placeholder="you@example.com"
+      required
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+    />
+  </div>
+
+  <div className="input-group-new">
+    <label>Password</label>
+    <div className="password-wrapper">
+      <input
+        type="password"
+        placeholder="••••••••"
+        required
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+    </div>
+  </div>
+
+  {!isLogin && (
+    <div className="input-group-new">
+      <label>Confirm Password</label>
+      <div className="password-wrapper">
+        <input
+          type="password"
+          placeholder="••••••••"
+          required
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+      </div>
+    </div>
+  )}
+
+  <button
+  type="submit"
+  className="btn-auth-submit"
+  disabled={loading}
+>
+  {loading
+    ? "Please wait..."
+    : isLogin
+    ? "Log In"
+    : "Create Account"}
+</button>
+
+  <div className="divider-new">
+    <span>or continue with</span>
+  </div>
+
+  <div className="social-auth-btns">
+    <button type="button" className="btn-social">
+      <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" alt="Google" />
+    </button>
+
+    <button type="button" className="btn-social">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+    </button>
+  </div>
+
+  <p className="switch-auth-text">
+    {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+    <button type="button" onClick={() => setIsLogin(!isLogin)}>
+      {isLogin ? "Sign Up" : "Log In"}
+    </button>
+  </p>
+
+</form>
           </div>
         </div>
       </div>

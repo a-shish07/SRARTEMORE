@@ -26,7 +26,28 @@ import Press from "./pages/Press";
 import WholesaleInquiry from "./pages/Wholesale";
 import "./index.css";
 
+
+//Admin Pages
+import AdminLogin from "./admin/pages/AdminLogin/AdminLogin";
+import ProtectedRoute from "./admin/components/ProtectedRoute";
+import AdminDashboard from "./admin/pages/AdminDashboard/AdminDashboard";
 import PolicyPage from "./pages/PolicyPage";
+import AdminLayout from "./admin/layouts/AdminLayout";
+import BannerList from "./admin/pages/Banner/BannerList";
+import AddBanner from "./admin/pages/Banner/AddBanner";
+import EditBanner from "./admin/pages/Banner/EditBanner";
+import CategoryList from "./admin/pages/Categories/CategoryList";
+import AddCategory from "./admin/pages/Categories/AddCategory";
+import EditCategory from "./admin/pages/Categories/EditCategory";
+import ShapeList from "./admin/pages/Shapes/ShapeList";
+import AddShape from "./admin/pages/Shapes/AddShape";
+import EditShape from "./admin/pages/Shapes/EditShape";
+import ProductList from "./admin/pages/Products/ProductList";
+import AddProduct from "./admin/pages/Products/AddProduct";
+import EditProduct from "./admin/pages/Products/EditProduct";
+import SizeList from "./admin/pages/Sizes/SizeList";
+import AddSize from "./admin/pages/Sizes/AddSize";
+import EditSize from "./admin/pages/Sizes/EditSize";
 
 type Page =
   | "home" | "products" | "detail" | "cart" | "checkout" | "success" | "about" | "contact" | "favorites"
@@ -115,17 +136,27 @@ function AppInner() {
     }
   };
 
-  const showFooter = page !== "checkout" && page !== "success" && page !== "login";
+  const isAdminPage = location.pathname.startsWith("/admin");
+
+const showFooter =
+  !isAdminPage &&
+  page !== "checkout" &&
+  page !== "success" &&
+  page !== "login";
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
       <ScrollToTop />
       {/* Hide cursor on mobile later inside component */}
       <CustomCursor />
+{!isAdminPage && page !== "login" && <AnnouncementBar />}
 
-      {page !== "login" && <AnnouncementBar />}
-      {page !== "login" && <Header currentPage={page as any} onNavigate={navigate as any} />}
-
+{!isAdminPage && page !== "login" && (
+  <Header
+    currentPage={page as any}
+    onNavigate={navigate as any}
+  />
+)}
       {/* Main Content */}
       <main className="flex-grow w-full">
         <Routes>
@@ -148,6 +179,48 @@ function AppInner() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/press" element={<Press />} />
           <Route path="/wholesale" element={<WholesaleInquiry  />} />
+
+
+          {/* Admin Login */}
+<Route
+  path="/admin/login"
+  element={<AdminLogin />}
+/>
+
+{/* Admin Routes */}
+<Route
+  path="/admin"
+  element={
+    <ProtectedRoute>
+      <AdminLayout />
+    </ProtectedRoute>
+  }
+>
+  <Route path="dashboard" element={<AdminDashboard />} />
+
+  <Route path="banners" element={<BannerList />} />
+  <Route path="banners/add" element={<AddBanner />} />
+  <Route path="banners/edit/:id" element={<EditBanner />} />
+
+  <Route path="/admin/categories" element={<CategoryList />} />
+  <Route path="/admin/categories/add" element={<AddCategory />} />
+  <Route path="/admin/categories/edit/:id" element={<EditCategory />} />
+
+  <Route path="/admin/shapes" element={<ShapeList />} />
+  <Route path="/admin/shapes/add" element={<AddShape />} />
+  <Route path="/admin/shapes/edit/:id" element={<EditShape />} />
+
+  <Route path="/admin/products" element={<ProductList />} />
+  <Route path="/admin/products/add" element={<AddProduct />} />
+  <Route path="/admin/products/edit/:id" element={<EditProduct />} />
+
+  <Route path="/admin/sizes" element={<SizeList />} />
+<Route path="/admin/sizes/add" element={<AddSize />} />
+<Route path="/admin/sizes/edit/:id" element={<EditSize />} />
+
+</Route>
+
+
           {/* Policy & Info Pages */}
           <Route path="/blog" element={
             <PolicyPage 
